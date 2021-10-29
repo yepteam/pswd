@@ -1,3 +1,3 @@
 # PSWD — anonymous generator of strong passwords.
 
-Generates passwords only on the client device and does not transfer any data to third parties.
+Generates passwords only on the client device and does not transfer any data to anyone.
