@@ -22,7 +22,7 @@
           <label for="pswd">PASSWORD:</label>
           <div class="input-group mb-4">
             
-            <input id="pswd" class="form-control form-control-lg fs-1 font-monospace text-center" type="text" size="16" placeholder="PSWD" readonly>
+            <input id="pswd" class="form-control form-control-lg fs-1 font-monospace" type="text" size="16" placeholder="PSWD" readonly>
             <button class="btn btn-primary fs-1" type="button" id="copy" onclick="copy(); return false;">
               <span class="px-1">
                 <i class="bi bi-files"></i><span class="d-none d-md-inline"> COPY </span>
@@ -34,10 +34,10 @@
           <label for="strength">STRENGTH:</label>
           <div class="input-group">
 
-            <select class="form-control form-control-lg fs-1 font-monospace text-center form-select" id="strength">
-              <option value="8" selected>NORMAL (8)</option>
-              <option value="12">HARD (12)</option>
-              <option value="16">EXTREME (16)</option>
+            <select class="form-control form-control-lg fs-1 form-select" id="strength">
+              <option value="8" selected>NORMAL STRENGTH (8)</option>
+              <option value="12">HARD STRENGTH (12)</option>
+              <option value="16">EXTREME STRENGTH (16)</option>
             </select>
             
             <button class="btn btn-danger fs-1" type="button" id="generate" onclick="generate(); return false;">
