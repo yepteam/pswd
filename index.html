@@ -25,6 +25,11 @@
               </span>
             </button>
             <input id="pswd" class="form-control form-control-lg fs-1 font-monospace text-center" type="text" placeholder="PSWD" readonly>
+            <button class="btn btn-primary fs-1" type="button" id="generate" onclick="copy(); return false;">
+              <span class="px-1">
+                <i class="bi bi-clipboard"></i>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -33,6 +38,21 @@
 
 
   <script>
+    
+  function copy() {
+    var text = document.querySelector('.js-copytextarea');
+    text.focus();
+    text.select();
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Copying text command was ' + msg);
+    } 
+    catch (err) {
+      console.log('Oops, unable to copy');
+    }
+  }
 
   function generate(length = 8) {
     let result           = '';
