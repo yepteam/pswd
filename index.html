@@ -81,7 +81,7 @@
   }
 
   function generate() {
-    let strength = document.getElementById('strength').value;
+    let strength = document.getElementById('strength').value || 8;
     let result = '';
     let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
     for ( var i = 0; i < strength; i++ ) {
