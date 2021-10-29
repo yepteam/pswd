@@ -1,0 +1,15 @@
+<script>
+  
+  function generate(length) {
+    let result           = '';
+    let chars       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let length = chars.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += chars.charAt(Math.floor(Math.random() * chars));
+   }
+   return result;
+}
+
+console.log(generate(8));
+  
+</script>
