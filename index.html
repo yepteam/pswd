@@ -99,9 +99,9 @@
   function generate() {
     let strength = document.getElementById('strength').value || 8;
     let result = '';
-    let uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let lowercase = 'abcdefghijklmnopqrstuvwxyz';
-    let numbers = '0123456789';
+    let uppercase = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    let lowercase = shuffle('abcdefghijklmnopqrstuvwxyz');
+    let numbers = shuffle('0123456789');
     for ( var i = 0; i < strength; i++ ) {
       if (i % 4 == 0) {
         result += numbers.charAt(Math.floor(Math.random() * numbers.length));
