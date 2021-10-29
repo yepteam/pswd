@@ -86,7 +86,7 @@
     let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     let numbers = '0123456789';
     for ( var i = 0; i < strength; i++ ) {
-      if(i % 4 == 0) {
+      if(i % (Math.floor(Math.random() * (6 - 3)) + 3) == 0) {
         result += numbers.charAt(Math.floor(Math.random() * numbers.length));
       }
       else {
