@@ -4,7 +4,7 @@
 </head>
 <body>
   
-  <h1 id="pswd">PSWD</h1>
+  <input id="pswd" class="form-control form-control-lg" type="text" placeholder="" readonly autofocus>
 
 <script>
   
@@ -18,7 +18,6 @@ function generate(length) {
 }
   
 //console.log();
-let pswd = document.getElementById('pswd');
-pswd.innerHTML = generate(8);
+document.getElementById('pswd').value(generate(8));
 
 </script>
