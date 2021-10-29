@@ -79,6 +79,22 @@
       //console.log('Oops, unable to copy');
     }
   }
+    
+  function shuffle(string) {
+    let array = string.split('');
+    var m = array.length, t, i;
+    // While there remain elements to shuffle…
+    while (m) {
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * m--);
+      // And swap it with the current element.
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+    string = array.join('');
+    return string;
+  }  
 
   function generate() {
     let strength = document.getElementById('strength').value || 8;
