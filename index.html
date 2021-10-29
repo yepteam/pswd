@@ -83,14 +83,20 @@
   function generate() {
     let strength = document.getElementById('strength').value || 8;
     let result = '';
-    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let lowercase = 'abcdefghijklmnopqrstuvwxyz';
     let numbers = '0123456789';
     for ( var i = 0; i < strength; i++ ) {
-      if (i % (Math.floor(Math.random() * (6 - 3)) + 3) == 0) {
+      if (i % 4 == 0) {
         result += numbers.charAt(Math.floor(Math.random() * numbers.length));
       }
       else {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
+        if (i % 2 == 0) {
+          result += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+        }
+        else {
+          result += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+        }
       }
       
    }
