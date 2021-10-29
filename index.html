@@ -18,21 +18,9 @@
     <div class="container">
       <div class="row">
         <div class="col mx-auto text-center">
-            
-          <label for="pswd">PASSWORD:</label>
-          <div class="input-group mb-4">
-            
-            <input id="pswd" class="form-control form-control-lg fs-1 font-monospace" type="text" size="16" placeholder="PSWD" readonly>
-            <button class="btn btn-primary fs-1" type="button" id="copy" onclick="copy(); return false;">
-              <span class="px-1">
-                <i class="bi bi-files"></i><span class="d-none d-md-inline"> COPY </span>
-              </span>
-            </button>
-            
-          </div>
           
-          <label for="strength">STRENGTH:</label>
-          <div class="input-group">
+            
+          <div class="input-group mb-3">
 
             <select class="form-control form-control-lg fs-1 form-select" id="strength">
               <option value="8" selected>NORMAL STRENGTH (8)</option>
@@ -47,7 +35,21 @@
             </button>
             
           </div>
+          
+          
 
+          <div class="input-group">
+            
+            <input id="pswd" class="form-control form-control-lg fs-1 font-monospace" type="text" size="16" placeholder="PSWD" readonly>
+            <button class="btn btn-primary fs-1" type="button" id="copy" onclick="copy(); return false;">
+              <span class="px-1">
+                <i class="bi bi-files"></i><span class="d-none d-md-inline"> COPY </span>
+              </span>
+            </button>
+            
+          </div>
+          
+          
         </div>
       </div>
     </div>
