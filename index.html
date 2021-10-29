@@ -20,7 +20,7 @@
         <div class="col-md-6 col-xl-4 mx-auto text-center">
           
             
-          <div class="input-group mb-4">
+          <div class="input-group mb-3 mb-md-4 mb-xl-5">
 
             <select class="form-control form-control-lg form-select" id="strength">
               <option value="8" selected>NORMAL (8)</option>
@@ -80,10 +80,10 @@
     }
   }
 
-  function generate(length = 8) {
+  function generate(strength = 8) {
     let result           = '';
     let chars       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
-    for ( var i = 0; i < length; i++ ) {
+    for ( var i = 0; i < strength; i++ ) {
       result += chars.charAt(Math.floor(Math.random() * chars.length));
    }
    document.getElementById('pswd').value = result;
