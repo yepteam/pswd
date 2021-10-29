@@ -35,11 +35,11 @@
     for ( var i = 0; i < length; i++ ) {
       result += chars.charAt(Math.floor(Math.random() * chars.length));
    }
+   document.getElementById('pswd').value = result;
    return result;
   }
 
-  //console.log();
-  document.getElementById('pswd').value = generate(8);
+  generate(8);
 
   </script>
 
