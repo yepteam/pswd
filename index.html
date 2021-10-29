@@ -19,32 +19,32 @@
       <div class="row">
         <div class="col mx-auto text-center">
             
-          <div class="form-floating mb-4">
-            <input id="pswd" class="form-control form-control-lg fs-1 font-monospace text-center" type="text" placeholder="PSWD" readonly>
-            <label for="pswd">PASSWORD:</label>
+          <div class="input-group mb-3">
+            <div class="form-floating">
+              <input id="pswd" class="form-control form-control-lg fs-1 font-monospace text-center" type="text" placeholder="PSWD" readonly>
+              <label for="pswd">PASSWORD:</label>
+            </div>
+            <button class="btn btn-primary fs-1" type="button" id="copy" onclick="copy(); return false;">
+              <span class="px-1">
+                <i class="bi bi-files"></i> COPY 
+              </span>
+            </button>
           </div>
-          
-          <button class="btn btn-danger fs-1" type="button" id="generate" onclick="generate(); return false;">
-            <span class="px-1">
-              <i class="bi bi-arrow-clockwise"></i> GENERATE 
-            </span>
-          </button>
-          
-          <div class="form-floating mb-4">
-            <select class="form-select font-monospace" id="strength">
-              <option value="8" selected>NORMAL (8)</option>
-              <option value="12">HARD (12)</option>
-              <option value="16">EXTREME (16)</option>
-            </select>
-            <label for="strength">STRENGTH:</label>
+          <div class="input-group mb-3">
+            <div class="form-floating">
+              <select class="form-select font-monospace" id="strength">
+                <option value="8" selected>NORMAL (8)</option>
+                <option value="12">HARD (12)</option>
+                <option value="16">EXTREME (16)</option>
+              </select>
+              <label for="strength">STRENGTH:</label>
+            </div>
+            <button class="btn btn-danger fs-1" type="button" id="generate" onclick="generate(); return false;">
+              <span class="px-1">
+                <i class="bi bi-arrow-clockwise"></i> GENERATE 
+              </span>
+            </button>
           </div>
-          
-          <button class="btn btn-primary fs-1" type="button" id="copy" onclick="copy(); return false;">
-            <span class="px-1">
-              <i class="bi bi-files"></i> COPY 
-            </span>
-          </button>
-
         </div>
       </div>
     </div>
