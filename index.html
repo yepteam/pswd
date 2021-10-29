@@ -83,9 +83,16 @@
   function generate() {
     let strength = document.getElementById('strength').value || 8;
     let result = '';
-    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
+    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let numbers = '0123456789';
     for ( var i = 0; i < strength; i++ ) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
+      if(i % 4 == 0) {
+        result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+      }
+      else {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      
    }
    document.getElementById('pswd').value = result;
    return result;
