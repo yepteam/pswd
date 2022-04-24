@@ -126,15 +126,6 @@
         }
         else {  
           if (i % 2 == 0) {
-            let numbersRandomIndex = Math.floor(Math.random() * numbers.length);
-            let numbersRandomSymbol = numbers.charAt(numbersRandomIndex);
-            while (result.includes(numbersRandomSymbol)) {
-              numbersRandomIndex = Math.floor(Math.random() * numbers.length);
-              numbersRandomSymbol = numbers.charAt(numbersRandomIndex);
-            }
-            result += numbersRandomSymbol;
-          }
-          else {
             let specialRandomIndex = Math.floor(Math.random() * special.length);
             let specialRandomSymbol = special.charAt(specialRandomIndex);
             while (result.includes(specialRandomSymbol)) {
@@ -142,6 +133,15 @@
               specialRandomSymbol = special.charAt(specialRandomIndex);
             }
             result += specialRandomSymbol;
+          }
+          else {
+            let numbersRandomIndex = Math.floor(Math.random() * numbers.length);
+            let numbersRandomSymbol = numbers.charAt(numbersRandomIndex);
+            while (result.includes(numbersRandomSymbol)) {
+              numbersRandomIndex = Math.floor(Math.random() * numbers.length);
+              numbersRandomSymbol = numbers.charAt(numbersRandomIndex);
+            }
+            result += numbersRandomSymbol;
           }
         }
       }
