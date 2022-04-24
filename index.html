@@ -115,13 +115,14 @@
         result += uppercaseRandomSymbol;
       }
       else {
-        let lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
-            let lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
-            while (result.includes(lowercaseRandomSymbol)) {
-              lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
-              lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
-            }
-            result += lowercaseRandomSymbol;
+        if (i % 3 == 0) {
+          let lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
+          let lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
+          while (result.includes(lowercaseRandomSymbol)) {
+            lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
+            lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
+          }
+          result += lowercaseRandomSymbol;
         }
         else {  
           if (i % 2 == 0) {
@@ -134,7 +135,6 @@
             result += numbersRandomSymbol;
           }
           else {
-            if (i % 3 == 0) {
             let specialRandomIndex = Math.floor(Math.random() * special.length);
             let specialRandomSymbol = special.charAt(specialRandomIndex);
             while (result.includes(specialRandomSymbol)) {
