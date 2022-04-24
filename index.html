@@ -116,14 +116,32 @@
       }
       else {
         if (i % 3 == 0) {
-           result += special.charAt(Math.floor(Math.random() * special.length));
+          let specialRandomIndex = Math.floor(Math.random() * special.length);
+          let specialRandomSymbol = special.charAt(specialRandomIndex);
+          while (result.includes(specialRandomSymbol)) {
+            specialRandomIndex = Math.floor(Math.random() * special.length);
+            specialRandomSymbol = special.charAt(specialRandomIndex);
+          }
+          result += specialRandomSymbol;
         }
         else {  
           if (i % 2 == 0) {
-            result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+            let numbersRandomIndex = Math.floor(Math.random() * numbers.length);
+            let numbersRandomSymbol = numbers.charAt(numbersRandomIndex);
+            while (result.includes(numbersRandomSymbol)) {
+              numbersRandomIndex = Math.floor(Math.random() * numbers.length);
+              numbersRandomSymbol = numbers.charAt(numbersRandomIndex);
+            }
+            result += numbersRandomSymbol;
           }
           else {
-            result += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+            let lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
+            let lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
+            while (result.includes(lowercaseRandomSymbol)) {
+              lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
+              lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
+            }
+            result += lowercaseRandomSymbol;
           }
         }
       }
