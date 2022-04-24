@@ -120,8 +120,14 @@
    document.getElementById('pswd').value = result;
    return result;
   }
+    
+  function onchange(e) {
+   generate();
+  }
 
   generate();
+    
+  document.getElementById('strength').addEventListener('change', onchange);
 
   </script>
 
