@@ -104,13 +104,13 @@
     let lowercase = shuffle('abcdefghijklmnopqrstuvwxyz');
     let numbers = shuffle('0123456789');
     let special = shuffle('!@#$%^&');
-    for ( var i = 0; i < strength; i++ ) {
+    for ( let i = 0; i < strength; i++ ) {
       if (i % 4 == 0) {
-        let uppercaseRandomIndex = 0;
-        let uppercaseRandomSymbol = 'A';
+        let uppercaseRandomIndex = Math.floor(Math.random() * uppercase.length);
+        let uppercaseRandomSymbol = uppercase.charAt(uppercaseRandomIndex);
         while (result.includes(uppercaseRandomSymbol)) {
-          uppercaseRandomIndex = Math.floor(Math.random() * uppercase.length)
-          uppercaseRandomSymbol = uppercase.charAt(uppercaseRandomIndex)
+          uppercaseRandomIndex = Math.floor(Math.random() * uppercase.length);
+          uppercaseRandomSymbol = uppercase.charAt(uppercaseRandomIndex);
         }
         result += uppercaseRandomSymbol;
       }
