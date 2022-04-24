@@ -106,7 +106,13 @@
     let special = shuffle('!@#$%^&');
     for ( var i = 0; i < strength; i++ ) {
       if (i % 4 == 0) {
-        result += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+        let uppercaseRandomIndex;
+        let uppercaseRandomSymbol;
+        while (result.includes(uppercaseRandomSymbol)) {
+          uppercaseRandomIndex = Math.floor(Math.random() * uppercase.length)
+          uppercaseRandomSymbol = uppercase.charAt(uppercaseRandomIndex)
+        }
+        result += uppercaseRandomSymbol;
       }
       else {
         if (i % 3 == 0) {
