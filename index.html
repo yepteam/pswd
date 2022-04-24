@@ -115,14 +115,13 @@
         result += uppercaseRandomSymbol;
       }
       else {
-        if (i % 3 == 0) {
-          let specialRandomIndex = Math.floor(Math.random() * special.length);
-          let specialRandomSymbol = special.charAt(specialRandomIndex);
-          while (result.includes(specialRandomSymbol)) {
-            specialRandomIndex = Math.floor(Math.random() * special.length);
-            specialRandomSymbol = special.charAt(specialRandomIndex);
-          }
-          result += specialRandomSymbol;
+        let lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
+            let lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
+            while (result.includes(lowercaseRandomSymbol)) {
+              lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
+              lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
+            }
+            result += lowercaseRandomSymbol;
         }
         else {  
           if (i % 2 == 0) {
@@ -135,13 +134,14 @@
             result += numbersRandomSymbol;
           }
           else {
-            let lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
-            let lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
-            while (result.includes(lowercaseRandomSymbol)) {
-              lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
-              lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
+            if (i % 3 == 0) {
+            let specialRandomIndex = Math.floor(Math.random() * special.length);
+            let specialRandomSymbol = special.charAt(specialRandomIndex);
+            while (result.includes(specialRandomSymbol)) {
+              specialRandomIndex = Math.floor(Math.random() * special.length);
+              specialRandomSymbol = special.charAt(specialRandomIndex);
             }
-            result += lowercaseRandomSymbol;
+            result += specialRandomSymbol;
           }
         }
       }
