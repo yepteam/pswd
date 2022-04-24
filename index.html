@@ -105,11 +105,12 @@
     let special = shuffle('!@#$%^&');
     for ( var i = 0; i < strength; i++ ) {
       if (i % 4 == 0) {
-        result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+        result += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+        
       }
       else {
         if (i % 2 == 0) {
-          result += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+          result += numbers.charAt(Math.floor(Math.random() * numbers.length));
         }
         else {
           result += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
