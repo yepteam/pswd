@@ -102,7 +102,7 @@
     let uppercase = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
     let lowercase = shuffle('abcdefghijklmnopqrstuvwxyz');
     let numbers = shuffle('0123456789');
-    let special = shuffle('~!@#$%^&*()+?><:"|\/,.');
+    let special = shuffle('!@#$%^&');
     for ( var i = 0; i < strength; i++ ) {
       if (i % 4 == 0) {
         result += numbers.charAt(Math.floor(Math.random() * numbers.length));
@@ -117,7 +117,7 @@
       }
       
    }
-   result = shuffle(result);
+   //result = shuffle(result);
    document.getElementById('pswd').value = result;
    return result;
   }
