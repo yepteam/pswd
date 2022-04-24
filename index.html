@@ -103,14 +103,14 @@
     let uppercase = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
     let lowercase = shuffle('abcdefghijklmnopqrstuvwxyz');
     let numbers = shuffle('0123456789');
-    let special = shuffle('!@#');
+    let special = shuffle('!@#$%^&');
     for ( var i = 0; i < strength; i++ ) {
       if (i % 4 == 0) {
         result += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
       }
       else {
         if (i % 3 == 0) {
-           result += special.charAt(Math.floor(Math.random() * uppercase.special));
+           result += special.charAt(Math.floor(Math.random() * special.length));
         }
         else {  
           if (i % 2 == 0) {
