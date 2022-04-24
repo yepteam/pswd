@@ -102,7 +102,7 @@
     let uppercase = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
     let lowercase = shuffle('abcdefghijklmnopqrstuvwxyz');
     let numbers = shuffle('0123456789');
-    let special = shuffle('!@#$%^&');
+    let special = shuffle('!@#$%^&-');
     for ( let i = 0; i < strength; i++ ) {
       if (i % 4 == 0) {
         let uppercaseRandomIndex = Math.floor(Math.random() * uppercase.length);
