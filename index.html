@@ -18,36 +18,35 @@
   <div class="p-1 h-100 d-flex flex-column justify-content-center">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 col-xl-4 mx-auto text-center">
-          
+        <div class="col-md-9 col-lg-7 col-xl-5 mx-auto text-center">
             
           <div class="input-group mb-3 mb-md-4 mb-xl-5">
 
-            <h1>PSWD</h1>
+            <h1 class="fw-bold mb-0 me-2">PSWD</h1>
 
-            <select class="form-control form-control-lg form-select" id="strength">
+            <select class="form-control form-select" id="strength">
               <option value="8">8 (WEAK)</option>
               <option value="16" selected>16 (NORMAL)</option>
               <option value="24">24 (STRONG)</option>
+              <option value="32">32 (HELL)</option>
             </select>
             
             <button class="btn btn-danger" type="button" id="generate" onclick="generate(); return false;">
-              <i class="bi bi-arrow-clockwise"></i> GENERATE 
+              <i class="bi bi-arrow-clockwise"></i> GENERATE
             </button>
             
           </div>
           
-          
         </div>
       </div>
       <div class="row">
-        <div class="col-md-10 col-xl-8 mx-auto text-center">
+        <div class="col-md-12 col-lg-10 col-xl-8 mx-auto text-center">
           
           
           <div class="input-group mb-3 mb-md-4 mb-xl-5">
             
-            <input id="pswd" class="form-control form-control-lg fs-1 font-monospace" type="text" placeholder="PASSWORD" readonly>
-            <button class="btn btn-primary fs-1" type="button" id="copy" onclick="copy(); return false;">
+            <input id="pswd" class="form-control fs-2 font-monospace" type="text" placeholder="PASSWORD" readonly>
+            <button class="btn btn-primary fs-2" type="button" id="copy" onclick="copy(); return false;">
               <span class="px-1">
                 <i class="bi bi-files"></i><span class="d-none d-md-inline"> COPY </span>
               </span>
@@ -56,7 +55,7 @@
             
           </div>
           <a class="btn btn-outline-light btn-sm mb-2" href="//github.com/yepteam/pswd" target="_blank"><i class="bi bi-github"></i> GITHUB </a>
-          
+
           
         </div>
           
@@ -82,76 +81,48 @@
       //console.log('Oops, unable to copy');
     }
   }
-    
-  function shuffle(string) {
-    let array = string.split('');
-    var m = array.length, t, i;
-    // While there remain elements to shuffle…
-    while (m) {
-      // Pick a remaining element…
-      i = Math.floor(Math.random() * m--);
-      // And swap it with the current element.
-      t = array[m];
-      array[m] = array[i];
-      array[i] = t;
-    }
-    string = array.join('');
-    return string;
-  }  
+
 
   function generate() {
-    let strength = document.getElementById('strength').value || 8;
-    let result = '';
-    let uppercase = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-    let lowercase = shuffle('abcdefghijklmnopqrstuvwxyz');
-    let numbers = shuffle('0123456789');
-    let special = shuffle('!@#$%^&-');
-    for ( let i = 0; i < strength; i++ ) {
-      if (i % 4 == 0) {
-        let uppercaseRandomIndex = Math.floor(Math.random() * uppercase.length);
-        let uppercaseRandomSymbol = uppercase.charAt(uppercaseRandomIndex);
-        while (result.includes(uppercaseRandomSymbol)) {
-          uppercaseRandomIndex = Math.floor(Math.random() * uppercase.length);
-          uppercaseRandomSymbol = uppercase.charAt(uppercaseRandomIndex);
-        }
-        result += uppercaseRandomSymbol;
+    let strength = document.getElementById('strength').value;
+
+    function generateCryptoPassword(length = 16) {
+      // Наборы символов
+      const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+      const numbers = '0123456789';
+      // const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+      const symbols = '!@#$%^&*-';
+      const allChars = uppercase + lowercase + numbers + symbols;
+
+      // Функция получения криптографически стойкого случайного числа
+      function getCryptoRandomInt(max) {
+        const randomBuffer = new Uint32Array(1);
+        window.crypto.getRandomValues(randomBuffer);
+        return randomBuffer[0] % max;
       }
-      else {
-        if (i % 3 == 0) {
-          let lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
-          let lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
-          while (result.includes(lowercaseRandomSymbol)) {
-            lowercaseRandomIndex = Math.floor(Math.random() * lowercase.length);
-            lowercaseRandomSymbol = lowercase.charAt(lowercaseRandomIndex);
-          }
-          result += lowercaseRandomSymbol;
-        }
-        else {  
-          if (i % 2 == 0) {
-            let specialRandomIndex = Math.floor(Math.random() * special.length);
-            let specialRandomSymbol = special.charAt(specialRandomIndex);
-            while (result.includes(specialRandomSymbol)) {
-              specialRandomIndex = Math.floor(Math.random() * special.length);
-              specialRandomSymbol = special.charAt(specialRandomIndex);
-            }
-            result += specialRandomSymbol;
-          }
-          else {
-            let numbersRandomIndex = Math.floor(Math.random() * numbers.length);
-            let numbersRandomSymbol = numbers.charAt(numbersRandomIndex);
-            while (result.includes(numbersRandomSymbol)) {
-              numbersRandomIndex = Math.floor(Math.random() * numbers.length);
-              numbersRandomSymbol = numbers.charAt(numbersRandomIndex);
-            }
-            result += numbersRandomSymbol;
-          }
-        }
+
+      let password = '';
+
+      // Добавляем гарантированные символы из каждого набора
+      password += uppercase[getCryptoRandomInt(uppercase.length)];
+      password += lowercase[getCryptoRandomInt(lowercase.length)];
+      password += numbers[getCryptoRandomInt(numbers.length)];
+      password += symbols[getCryptoRandomInt(symbols.length)];
+
+      // Заполняем остаток
+      for (let i = password.length; i < length; i++) {
+        password += allChars[getCryptoRandomInt(allChars.length)];
       }
-      
-   }
-   //result = shuffle(result);
-   document.getElementById('pswd').value = result;
-   return result;
+
+      // Перемешиваем символы
+      return password.split('').sort(() => getCryptoRandomInt(2) - 0.5).join('');
+    }
+
+    let result = generateCryptoPassword(strength);
+
+    document.getElementById('pswd').value = result;
+    return result;
   }
     
   function onchange(e) {
