@@ -86,16 +86,18 @@
   function generate() {
     let strength = document.getElementById('strength').value;
 
-    function generateCryptoPassword(length = 16) {
-      // Наборы символов
+    /**
+     * @param {number} length - Длина пароля
+     * @param {boolean} strictMode - Строгий режим (true) избегает всех паттернов
+     * @returns {string} Сгенерированный пароль
+     */
+    function generateCryptoPassword(length = 16, strictMode = true) {
       const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       const lowercase = 'abcdefghijklmnopqrstuvwxyz';
       const numbers = '0123456789';
-      // const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
       const symbols = '!@#$%^&*';
       const allChars = uppercase + lowercase + numbers + symbols;
 
-      // Функция получения криптографически стойкого случайного числа
       function getCryptoRandomInt(max) {
         const randomBuffer = new Uint32Array(1);
         window.crypto.getRandomValues(randomBuffer);
@@ -103,24 +105,104 @@
       }
 
       let password = '';
+      const maxAttemptsPerChar = 50;
 
-      // Добавляем гарантированные символы из каждого набора
-      password += uppercase[getCryptoRandomInt(uppercase.length)];
-      password += lowercase[getCryptoRandomInt(lowercase.length)];
-      password += numbers[getCryptoRandomInt(numbers.length)];
-      password += symbols[getCryptoRandomInt(symbols.length)];
+      const usedChars = new Set();
+      const usedLowercase = new Set();
 
-      // Заполняем остаток
-      for (let i = password.length; i < length; i++) {
-        password += allChars[getCryptoRandomInt(allChars.length)];
+      const keyboardPatterns = ['qwerty', 'asdfgh', 'zxcvbn', '123456', 'password', 'admin'];
+
+      const requiredTypes = [
+        uppercase[getCryptoRandomInt(uppercase.length)],
+        lowercase[getCryptoRandomInt(lowercase.length)],
+        numbers[getCryptoRandomInt(numbers.length)],
+        symbols[getCryptoRandomInt(symbols.length)]
+      ];
+
+      for (let i = requiredTypes.length - 1; i > 0; i--) {
+        const j = getCryptoRandomInt(i + 1);
+        [requiredTypes[i], requiredTypes[j]] = [requiredTypes[j], requiredTypes[i]];
       }
 
-      // Перемешиваем символы
-      return password.split('').sort(() => getCryptoRandomInt(2) - 0.5).join('');
+      for (const char of requiredTypes.slice(0, Math.min(4, length))) {
+        password += char;
+        if (strictMode) {
+          usedChars.add(char.toLowerCase());
+          if (/[a-z]/.test(char)) usedLowercase.add(char.toLowerCase());
+        }
+      }
+
+      for (let i = password.length; i < length; i++) {
+        let char;
+        let valid = false;
+        let charAttempts = 0;
+
+        while (!valid && charAttempts < maxAttemptsPerChar) {
+          char = allChars[getCryptoRandomInt(allChars.length)];
+          charAttempts++;
+
+          if (!strictMode) {
+            valid = true;
+            break;
+          }
+
+          if (usedChars.has(char.toLowerCase())) {
+            continue;
+          }
+
+          if (i > 0) {
+            const prevChar = password[i - 1];
+
+            const bothDigits = /\d/.test(char) && /\d/.test(prevChar);
+
+            const bothSameCase =
+                    (/[A-Z]/.test(char) && /[A-Z]/.test(prevChar)) ||
+                    (/[a-z]/.test(char) && /[a-z]/.test(prevChar));
+
+            const bothSymbols = /[!@#$%^&*]/.test(char) && /[!@#$%^&*]/.test(prevChar);
+
+            if (bothDigits || bothSameCase || bothSymbols) {
+              continue;
+            }
+          }
+
+          if (/[a-zA-Z]/.test(char)) {
+            const lowerChar = char.toLowerCase();
+            if (usedLowercase.has(lowerChar)) {
+              continue;
+            }
+          }
+
+          valid = true;
+        }
+
+        if (!valid) {
+          char = allChars[getCryptoRandomInt(allChars.length)];
+        }
+
+        password += char;
+
+        if (strictMode) {
+          usedChars.add(char.toLowerCase());
+          if (/[a-z]/.test(char)) {
+            usedLowercase.add(char.toLowerCase());
+          }
+        }
+      }
+
+      if (strictMode) {
+        const passLower = password.toLowerCase();
+        for (const pattern of keyboardPatterns) {
+          if (passLower.includes(pattern)) {
+            return generateUICPassword(length, strictMode);
+          }
+        }
+      }
+
+      return password;
     }
 
     let result = generateCryptoPassword(strength);
-
     document.getElementById('pswd').value = result;
     return result;
   }
