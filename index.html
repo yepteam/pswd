@@ -194,7 +194,7 @@
         const passLower = password.toLowerCase();
         for (const pattern of keyboardPatterns) {
           if (passLower.includes(pattern)) {
-            return generateUICPassword(length, strictMode);
+            return generateCryptoPassword(length, strictMode);
           }
         }
       }
